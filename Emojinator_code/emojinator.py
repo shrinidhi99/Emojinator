@@ -1,15 +1,15 @@
-from utils import detector_utils as detector_utils
-import cv2
+from Emojinator_code.utils import detector_utils as detector_utils
 import tensorflow as tf
 import cv2
 from keras.models import load_model
 import numpy as np
 import os
 
-model = load_model('emojinator.h5')
+model = load_model('emojinator.h5')  # loading the trained model
 detection_graph, sess = detector_utils.load_inference_graph()
 
 
+# predicting live
 def keras_predict(model, image):
     processed = keras_process_image(image)
     pred_probab = model.predict(processed)[0]
@@ -17,6 +17,7 @@ def keras_predict(model, image):
     return max(pred_probab), pred_class
 
 
+# resizing the image to fit properly before it is fit for prediction
 def keras_process_image(img):
     image_x = 50
     image_y = 50
@@ -26,6 +27,7 @@ def keras_process_image(img):
     return img
 
 
+# fetching emojis that are already present
 def get_emojis():
     emojis_folder = 'hand_emo/'
     emojis = []
@@ -35,11 +37,11 @@ def get_emojis():
     return emojis
 
 
+# getting the rectangular window
 def overlay(image, emoji, x, y, w, h):
     emoji = cv2.resize(emoji, (w, h))
     try:
-        image[y:y + h, x:x +
-              w] = blend_transparent(image[y:y + h, x:x + w], emoji)
+        image[y:y + h, x:x + w] = blend_transparent(image[y:y + h, x:x + w], emoji)
     except:
         pass
     return image
@@ -66,6 +68,7 @@ def blend_transparent(face_img, overlay_t_img):
     return np.uint8(cv2.addWeighted(face_part, 255.0, overlay_part, 255.0, 0.0))
 
 
+# launching the web camera and capturing the live gestures
 def main():
     emojis = get_emojis()
 

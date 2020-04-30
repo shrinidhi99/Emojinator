@@ -1,3 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 .vscode
+Emojinator_code/get_hand_images.py
+Emojinator_code/generate_tf_records.py
+Emojinator_code/xml_to_csv.py
+Emojinator_code/LICENSE.txt
+Emojinator_code/protos
