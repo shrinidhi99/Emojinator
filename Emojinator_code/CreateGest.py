@@ -63,12 +63,12 @@ def main(g_id):
         cv2.imshow("thresh", thresh)
         keypress = cv2.waitKey(1)
         if keypress == ord('c'):
-            if flag_start_capturing == False:
+            if not flag_start_capturing:
                 flag_start_capturing = True
             else:
                 flag_start_capturing = False
                 frames = 0
-        if flag_start_capturing == True:
+        if flag_start_capturing:
             frames += 1
         if pic_no == total_pics:
             break
