@@ -7,7 +7,7 @@ Emojis are ideograms and smileys used in electronic messages and web pages. Emoj
 1. Filters to detect hand.
 2. CNN for training the model.
 
-### Python Implementation
+### Implementation
 The model is made up of a neural network consisting of 2 convolutional networks followed by 2 dense layers.
 
 ### Model Architecture
